@@ -1,0 +1,23 @@
+p.title Add a Lift Entry
+form.content
+  div.field.date
+    label[for="date"] Date:
+    input[type="text" name="date"]
+
+  div.field.lift
+    label[for="lift_id"] Lift:
+    select[name="lift_id"]
+      option[value=""] Select one
+      - if lifts.any?
+        - for lift in lifts do
+          option[value="#{lift.id}"] = lift.name
+
+  div.field.repetitions
+    label[for="repetitions"] Reps:
+    input[type="text" name="repetitions"]
+      
+  div.field.weight
+    label[for="weight"] Weight:
+    input[type="text" name="weight"]
+
+  input[type="button" value="Submit" class="addEntry"]

@@ -1,0 +1,18 @@
+h2 This is the HomePage
+- if !user.nil?
+  ul
+    li: a.user-records[href="/members/#{user.id}"] Go to your profile page
+
+  div.add-user-lift
+    == partial :_add_user_lift, :locals => { :lifts => lifts }
+
+  div.user-lift-list
+    h2.title All My Lifts
+    table.content
+
+  div.lift-list
+    h2.title All Lifts
+    div.content
+
+- else 
+  p Here's some content for users not logged in
