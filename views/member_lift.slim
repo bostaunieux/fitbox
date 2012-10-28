@@ -1,0 +1,9 @@
+h2 #{lift.name} Records for #{user.handle}
+
+div.add-user-lift
+  == partial :_add_specific_user_lift, :locals => { :lift => lift }
+
+div.user-lift-list
+  h2.title All My Lifts
+  table.content
+

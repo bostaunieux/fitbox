@@ -12,6 +12,5 @@ class User
         }
 
     has n, :user_lifts
-
 end
 

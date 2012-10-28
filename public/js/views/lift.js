@@ -10,11 +10,20 @@ wod.View.LiftSummary = Backbone.View.extend({
 		_.bindAll(this, 'render');
     },
 
+    events: {
+        'click': 'onEntryClick'
+    },
+
 	render: function() {
         $(this.el).attr('lift_id', this.model.get('id'));
 		$(this.el).html(this.tpl(this.model.toJSON()));
 		return this;
-	}
+	},
+
+    onEntryClick: function(event) {
+        var currentUser = wod.Model.
+        window.location = '/member/lift/' + this.model.get('lift_id'); 
+    }
 });
 
 wod.View.LiftsSummary = Backbone.View.extend({
@@ -28,7 +37,6 @@ wod.View.LiftsSummary = Backbone.View.extend({
         this.collection.on('reset', this.addAll);
 
 		this.userLiftCollection = this.options.userLiftCollection;
-		this.userLiftCollection.fetch();
     },
 
     addOne: function(entry) {

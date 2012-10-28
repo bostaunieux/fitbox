@@ -59,7 +59,7 @@ class Fenrir < Sinatra::Base
         logger.info "[Lift] Adding new lift - #{data.to_json}"
 
         begin
-            lift = Workout.create(
+            lift = Lift.create(
                 :name         => data["name"],
                 :description  => data["description"],
                 :lift_category => LiftCategory.first(:name => 'Custom')
@@ -81,8 +81,13 @@ class Fenrir < Sinatra::Base
         # forbidden
         halt 403 if @user.nil?
 
+
         begin
-            entries = @user.user_lifts
+			if params['summary'] && params['summary'].to_bool == true
+				entries = UserLift.top_lifts_for_user(@user)
+			else
+				entries = @user.user_lifts
+			end
         rescue Exception => e
             logger.error "[User Lift] Problem loading user lifts - #{e.message}"
         end

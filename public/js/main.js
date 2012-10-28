@@ -17,6 +17,8 @@ wod.View.App = Backbone.View.extend({
 
 		var liftCollection = new wod.Collection.Lifts();
 		var userLiftCollection = new wod.Collection.UserLifts();
+		userLiftCollection.setSummary(true);
+		userLiftCollection.fetch();
 		$('.lift-list').each(function(index, element) {
 
 			new wod.View.LiftsSummary({

@@ -1,4 +1,10 @@
 
+.lift-group {
+	clear: both;
+}
+
+.lift-group .lifts {
+}
 
 .lift-group .lifts .lift {
 	border: 1px solid #555;
@@ -6,4 +12,17 @@
 	margin: 5px;
 	padding: 5px;
 	display: inline-block;
+
+	width: 140px;
+	min-height: 70px;
+	vertical-align: top;
+}
+
+.lift-group .lifts .lift .name {
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.lift-group .lifts .lift .user-lift {
+	font-size: 0.8em;
 }

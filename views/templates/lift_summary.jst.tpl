@@ -14,13 +14,12 @@
 %>
 <div class="user-lift">
 	<div class="weight">
-		<%= selected.get('weight') %>
+		<%= selected.get('weight') %>lb
 		<span class="reps">(<%= selected.get('repetitions') %> Rep<% if (selected.get('repetitions') != 1) { print('s'); } %>)</span>
 	</div>
-	<div class="date">Date: <%= $.datepicker.formatDate('M d, yy', new Date(selected.get('date') * 1000)) %></div> 
+	<div class="date"><%= $.datepicker.formatDate('M d, yy', new Date(selected.get('date') * 1000)) %></div> 
 </div>
 <%
 		}
 	}
 %>
-<a href="#" class="addRecord" data-workout-id="<%= id %>">Add record</a>

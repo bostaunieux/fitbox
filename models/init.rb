@@ -1,5 +1,6 @@
 require 'data_mapper'
 require 'dm-types'
+require 'dm-ar-finders'
 require 'uuidtools'
 require 'do_postgres'
 

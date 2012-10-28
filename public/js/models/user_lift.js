@@ -21,7 +21,19 @@ wod.Collection.UserLifts = Backbone.Collection.extend({
 	model: wod.Model.UserLift,
 
 	url: function() {
-		return '/api/user/lift';	
+		var apiUrl = '/api/user/lift';
+
+		if (this.isSummary) {
+			apiUrl += '?summary=1';
+		}
+
+		return apiUrl;
+	},
+
+	isSummary: false,
+
+	setSummary: function(summary) {
+		this.isSummary = summary;
 	}
 
 });
