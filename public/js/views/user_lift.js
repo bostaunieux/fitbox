@@ -1,3 +1,4 @@
+// TODO: format to use require js
 wod.View.UserLift = Backbone.View.extend({
 
 	tagName: 'tr',

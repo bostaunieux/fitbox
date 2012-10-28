@@ -1,27 +1,24 @@
-wod.Model.Lift = Backbone.Model.extend({
+define([
+    'jquery',
+    'underscore',
+    'backbone'
+], function($, _, Backbone) {
+    return Backbone.Model.extend({
 
-    defaults: {
-		'id': null,
-		'name': null,
-		'description': null,
-        'lift_category_name': null,
-		'user_lifts': []
-    },
+        defaults: {
+            'id': null,
+            'name': null,
+            'description': null,
+            'lift_category_name': null,
+            'user_lifts': []
+        },
 
-	urlRoot: '/api/lift',
+        urlRoot: '/api/lift',
 
-	validate: function(attrs) {
+        validate: function(attrs) {
 
-	}
+        }
 
+    });
 });
 
-wod.Collection.Lifts = Backbone.Collection.extend({
-
-	model: wod.Model.Lift,
-
-	url: function() {
-		return '/api/lift';	
-	}
-
-});

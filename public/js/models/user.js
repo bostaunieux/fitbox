@@ -1,12 +1,17 @@
-wod.Model.User = Backbone.Model.extend({
+define(['backbone'], function(Backbone) {
 
-    defaults: {
-		"id": null,
-		"handle": null,
-		"email": null
-    },
+    var UserModel = Backbone.Model.extend({
 
-	url: '/api/user'
+        defaults: {
+            "id": null,
+            "handle": null,
+            "email": null
+        },
 
+        url: '/api/user'
+
+    });
+
+	return new UserModel();
 });
 

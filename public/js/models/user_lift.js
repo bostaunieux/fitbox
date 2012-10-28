@@ -1,39 +1,26 @@
-wod.Model.UserLift = Backbone.Model.extend({
+define([
+    'jquery',
+    'underscore',
+    'backbone'
+], function($, _, Backbone) {
 
-    defaults: {
-		'lift_id': 0,
-		'user_id': 0,
-		'weight': 0,
-        'repetitions': 1,
-		'date': Date.now()
-    },
+	return Backbone.Model.extend({
 
-	urlRoot: '/api/user/lift',
+		defaults: {
+			'lift_id': 0,
+			'user_id': 0,
+			'weight': 0,
+			'repetitions': 1,
+			'date': Date.now()
+		},
 
-	validate: function(attrs) {
+		urlRoot: '/api/user/lift',
 
-	}
+		validate: function(attrs) {
 
-});
-
-wod.Collection.UserLifts = Backbone.Collection.extend({
-
-	model: wod.Model.UserLift,
-
-	url: function() {
-		var apiUrl = '/api/user/lift';
-
-		if (this.isSummary) {
-			apiUrl += '?summary=1';
 		}
 
-		return apiUrl;
-	},
-
-	isSummary: false,
-
-	setSummary: function(summary) {
-		this.isSummary = summary;
-	}
-
+	});
 });
+
+
