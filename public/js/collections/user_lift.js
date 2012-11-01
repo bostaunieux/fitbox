@@ -9,19 +9,34 @@ define([
         model: UserLift,
 
         url: function() {
-            var apiUrl = '/api/user/lift';
+            var apiUrl = '/api/user/lift',
+				params = {};
 
             if (this.isSummaryOnly) {
-                apiUrl += '?summary=1';
+                params['summary'] = 1;
             }
+
+            if (this.filterByLift) {
+                params['lift_id'] = this.filterByLift;
+            }
+
+			if (_.size(params) > 0) {
+				apiUrl += '?' + $.param(params);
+			}
 
             return apiUrl;
         },
 
         isSummaryOnly: false,
 
+        filterByLift: null,
+
         setSummaryOnly: function(summaryOnly) {
             this.isSummaryOnly = summaryOnly;
+        },
+
+        setFilterByLift: function(liftId) {
+            this.filterByLift = liftId;
         }
 
     });

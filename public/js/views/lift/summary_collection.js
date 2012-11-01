@@ -2,8 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-	'views/lift/summary'
-], function($, _, Backbone, LiftSummary) {
+	'views/lift/summary_entry'
+], function($, _, Backbone, LiftSummaryView) {
 
     return Backbone.View.extend({
 
@@ -38,7 +38,7 @@ define([
 
                 $liftGroup.appendTo(this.$('.content'));
             }
-            var $lift = new LiftSummary({ model: entry });
+            var $lift = new LiftSummaryView({ model: entry });
             $liftGroup.find('div.lifts').append($lift.render().el);
         },
 

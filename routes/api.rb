@@ -81,13 +81,27 @@ class Fenrir < Sinatra::Base
         # forbidden
         halt 403 if @user.nil?
 
+        summary_only = params['summary'] && params['summary'].to_bool == true
+        if params['lift_id']
+            begin
+                filter_by_lift = Lift.get(params['lift_id'])
+            rescue Exception => e
+            end
+            halt 404 if filter_by_lift.nil?
+        end
 
         begin
-			if params['summary'] && params['summary'].to_bool == true
-				entries = UserLift.top_lifts_for_user(@user)
-			else
-				entries = @user.user_lifts
-			end
+            if summary_only
+                entries = UserLift.top_lifts_for_user(@user)
+            else
+                if filter_by_lift.nil?
+                    entries = @user.user_lifts
+                else 
+                    entries = @user.user_lifts.all(:lift_id => filter_by_lift.id)
+		logger.info("Lift #{filter_by_lift}")
+		logger.info("Entries #{entries.to_json}")
+                end
+            end
         rescue Exception => e
             logger.error "[User Lift] Problem loading user lifts - #{e.message}"
         end

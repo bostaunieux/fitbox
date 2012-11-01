@@ -34,5 +34,8 @@ require([
 	'views/user/user_data'
 ], function($, ui, _, Backbone, UserModel, UserData) {
     var userView = new UserData({ model: UserModel });
+	window.App = {};
+	window.App.pageData = $('body').data('pageData');
+
 });
 

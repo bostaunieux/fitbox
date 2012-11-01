@@ -4,16 +4,16 @@ define([
     'backbone',    // lib/backbone/backbone
 	'collections/lift',
 	'collections/user_lift',
-	'views/lifts/summary',
+	'views/lift/summary_collection',
 	'domReady!'
-], function($, _, Backbone, LiftCollection, UserLiftCollection, LiftSummaryView) {
+], function($, _, Backbone, LiftCollection, UserLiftCollection, LiftCollectionView) {
 	var liftCollection = new LiftCollection();
 	var userLiftCollection = new UserLiftCollection();
 	userLiftCollection.setSummaryOnly(true);
 	userLiftCollection.fetch();
 
 	$('.lift-summary-list').each(function(index, element) {
-		new LiftSummaryView({
+		new LiftCollectionView({
 			el: $(element),
 			collection: liftCollection,
 			userLiftCollection: userLiftCollection
