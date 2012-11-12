@@ -1,4 +1,16 @@
+body {
+	min-width: 320px;
+}
 
+#main-content {
+	margin: 0 10px;
+}
+
+.user-lift-list {
+	max-width: 400px;
+}
+
+/*
 .lift-group {
 	clear: both;
 }
@@ -26,3 +38,4 @@
 .lift-group .lifts .lift .user-lift {
 	font-size: 0.8em;
 }
+*/

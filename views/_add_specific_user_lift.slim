@@ -1,19 +1,42 @@
-p.title Add a Lift Entry
-form.content
-  div.field.date
-    label[for="date"] Date:
-    input[type="text" name="date"]
+h3.title Log a New Workout
+form.content.form-horizontal
+  input[type="hidden" name="lift_id" value="#{lift.id}"]
 
-  div.field.lift
-    label[for="lift_id"] Lift:
-    input[type="hidden" name="lift_id" value="#{lift.id}"]
+  div.control-group
+    div.control-label.date
+      label[for="date"] Date
+    div.controls
+      input.input-small[type="text" name="date"]
 
-  div.field.repetitions
-    label[for="repetitions"] Reps:
-    input[type="text" name="repetitions"]
+  div.control-group
+    div.control-label.repetitions
+      label[for="repetitions"] Reps
+    div.controls
+      select.input-mini[name="repetitions"]
+        - 1.upto(10) do |i|
+          option #{i}
+    div.controls
+      label.radio.inline
+        input[type="radio" name="reps-other" value="1"]
+          ' 1
+      label.radio.inline
+        input[type="radio" name="reps-other" value="2"]
+          ' 2
+      label.radio.inline
+        input[type="radio" name="reps-other" value="3"]
+          ' 3
+      label.radio.inline
+        input[type="radio" name="reps-other" value="5"]
+          ' 5
       
-  div.field.weight
-    label[for="weight"] Weight:
-    input[type="text" name="weight"]
+  div.control-group
+    div.control-label.weight
+      label[for="weight"] Weight
+    div.controls
+      div.input-append
+        input.input-small[type="text" name="weight"]
+        span.add-on lbs
 
-  input[type="button" value="Submit" class="addEntry"]
+  div.control-group
+    div.controls
+      button.btn[type="submit" role="addEntry"] Add

@@ -5,9 +5,9 @@ define([
 ], function($, _, Backbone) {
 	return Backbone.View.extend({
 
-		tagName: 'div',
+		tagName: 'li',
 
-		className: 'lift',
+		className: 'lift span3',
 
 		tpl: JST['templates/lift_summary'],
 
@@ -26,7 +26,8 @@ define([
 		},
 
 		onEntryClick: function(event) {
-			window.location = '/member/lift/' + this.model.get('id'); 
+			event.preventDefault();
+			window.location = '/member/lift/' + this.model.get('name').replace(' ', '-').toLowerCase() + '/' + this.model.get('id'); 
 		}
 	});
 });

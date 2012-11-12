@@ -1,9 +1,9 @@
-h2 #{lift.name} Records for #{user.handle}
+h2 #{lift.name}s
 
 div.add-user-lift
   == partial :_add_specific_user_lift, :locals => { :lift => lift }
 
 div.user-lift-list
-  h2.title All My Lifts
-  table.content
+  h3.title #{lift.name} History
+  table.content.table.table-hover.table-bordered
 

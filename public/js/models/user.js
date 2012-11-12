@@ -8,7 +8,11 @@ define(['backbone'], function(Backbone) {
             "email": null
         },
 
-        url: '/api/user'
+        url: '/api/user',
+
+		exists: function() {
+			return this.get('id') != null;
+		}
 
     });
 

@@ -2,7 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-	'views/user_lift/entry'
+	'views/user_lift/entry',
+	'tablesorter'
 ], function($, _, Backbone, UserLiftEntry) {
 
     return Backbone.View.extend({
@@ -10,29 +11,29 @@ define([
         initialize: function() {
             _.bindAll(this, 'addAll', 'addOne');
 
+			this.$table = this.$('table');
+
             this.collection.fetch();
             this.collection.on('reset', this.addAll);
             this.collection.on('add', this.addAll);
         },
 
         addOne: function(entry) {
-            var liftName = entry.get('lift_category_name'),
-                $container = this.$('.content [data-lift-name="' + liftName + '"]');
-
-            if ($container.length === 0) {
-                $container = $('<div />').attr('data-lift-name', liftName);
-                $container.appendTo(this.$('.content'));
-                $('<p />').text(liftName + 's').appendTo($container);
-            }
-
-            $container.append(new UserLiftEntry({ model: entry }).render().el);
-
+            this.$table.prepend(new UserLiftEntry({ model: entry }).render().el);
         },
 
         addAll: function() {
-            this.$('.content').html('');
+            this.$table.html(
+				'<thead><th>Date</th><th>Reps</th><th>Weight</th></thead>'
+				);
             this.collection.each(this.addOne);
-
+			this.$table.tablesorter({
+				// TODO: create own parser for storing in data attribute
+				textExtraction: { 
+					// for the date, ensure we're sorting on the timestamp
+					0: function(node, table, cellIndex) { return $(node).find('span').text(); } 
+			    } 
+			});
         }
     });
 });

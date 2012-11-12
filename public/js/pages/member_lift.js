@@ -1,16 +1,25 @@
 define([
-    'jquery',     // lib/jquery/jquery
-    'underscore', // lib/underscore/underscore
-    'backbone',    // lib/backbone/backbone
+    'jquery', 'underscore', 'backbone', 
+	'config',
 	'collections/user_lift',
 	'views/user_lift/collection',
+	'views/user_lift/add',
 	'domReady!'
-], function($, _, Backbone, UserLiftCollection, UserLiftCollectionView) {
+], function($, _, Backbone, Config, UserLiftCollection, UserLiftCollectionView, AddUserLiftView) {
 	var userLiftCollection = new UserLiftCollection();
-	if (App.pageData.liftId) {
-		userLiftCollection.setFilterByLift(App.pageData.liftId);
+	if (Config.pageData.liftId) {
+		userLiftCollection.setFilterByLift(Config.pageData.liftId);
+		userLiftCollection.fetch();
+	} else {
+		console.log('liftId not defined');
 	}
-	userLiftCollection.fetch();
+
+	$('.add-user-lift').each(function(index, element) {
+		new AddUserLiftView({
+			el: $(element),
+			collection: userLiftCollection
+		});
+	});
 
 	$('.user-lift-list').each(function(index, element) {
 		new UserLiftCollectionView({

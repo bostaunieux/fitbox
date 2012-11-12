@@ -31,7 +31,7 @@ define([
             if ($liftGroup.length === 0) {
                 $liftGroup = $('<div />').attr({
                     'data-lift-name': liftName,
-                    'class': 'lift-group'
+                    'class': 'lift-group row'
                 });
                 $liftGroup.append($('<h3 />').text(liftName + 's'));
                 $liftGroup.append($('<div />', { 'class': 'lifts' }));

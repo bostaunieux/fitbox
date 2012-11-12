@@ -1,12 +1,14 @@
 require.config({
-	baseUrl: '/js',
+	baseUrl: '/js/',
 
     paths: {
-        'jquery':     'vendor/jquery/jquery-1.8.0.min',
-        'jquery-ui':  'vendor/jquery/jquery-ui-1.8.23.custom.min',
-        'underscore': 'vendor/underscore/underscore-1.3.3',
-        'backbone':   'vendor/backbone/backbone-0.9.2',
-        'domReady':   'vendor/require/domReady-2.0.1'
+        'jquery':      'vendor/jquery/jquery-1.8.0.min',
+        'jquery-ui':   'vendor/jquery/jquery-ui-1.8.23.custom.min',
+        'underscore':  'vendor/underscore/underscore-1.3.3',
+        'backbone':    'vendor/backbone/backbone-0.9.2',
+        'bootstrap':   'vendor/bootstrap/bootstrap',
+        'tablesorter': 'vendor/jquery/jquery.tablesorter',
+        'domReady':    'vendor/require/domReady-2.0.1'
     },
 
     shim: {
@@ -31,11 +33,10 @@ require([
 	'underscore',
 	'backbone',
     'models/user',
-	'views/user/user_data'
+	'views/user/user_data',
+	'bootstrap'
 ], function($, ui, _, Backbone, UserModel, UserData) {
     var userView = new UserData({ model: UserModel });
-	window.App = {};
-	window.App.pageData = $('body').data('pageData');
 
 });
 

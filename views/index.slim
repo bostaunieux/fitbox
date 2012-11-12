@@ -1,18 +1,16 @@
-h2 This is the HomePage
-- if !user.nil?
-  ul
-    li: a.user-records[href="/members/#{user.id}"] Go to your profile page
+h2 CrossFit Lift Tracker
+- if user
+  /!div.add-user-lift
+    /!== partial :_add_user_lift, :locals => { :lifts => lifts }
 
-  div.add-user-lift
-    == partial :_add_user_lift, :locals => { :lifts => lifts }
-
-  div.user-lift-list
-    h2.title All My Lifts
-    table.content
+  /!div.user-lift-list
+    /!h2.title All My Lifts
+    /!table.content
 
   div.lift-summary-list
-    h2.title Lift Summary
-    div.content
+    /!h3.title Lift Summary
+    div.content.row-fluid
+      ul.thumbnails
 
 - else 
-  p Here's some content for users not logged in
+  p Welcome to FitBox.io! You can add and review records for CrossFit lifts.

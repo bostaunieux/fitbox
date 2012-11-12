@@ -7,29 +7,30 @@ html
     link[rel="stylesheet" type="text/css" href="/css/normalize.css"]
     /! link[rel="stylesheet" type="text/css" href="/css/fullcalendar.css"]
     link[rel="stylesheet" type="text/css" href="/css/main.css"]
+    link[rel="stylesheet" type="text/css" href="/css/bootstrap.css"]
+    link[rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.css"]
 
     script[src="https://login.persona.org/include.js"]
     script[src="/js/vendor/require/require-2.1.1.js" data-main="/js/main"]
 
   body[data-page-data="#{@page_data ? @page_data.to_json : {}}"]
     div#header
-      h1 WOD Records
+      div.navbar
+        div.navbar-inner
+          a.brand[href="/"] FitBox.io
 
-      div#user-info
-        - if !user.nil?
-          p.signed-in Welcome #{(!user.handle.nil? && user.handle) || user.email}!
-          ul
-            li: a[role="user-account-info" href="#"] Account Info
-            li: a[role="user-logout" href="#"] Logout
-          form#user-data
-            input[type="hidden" name="id" value="#{user.id}"]
-            input[type="hidden" name="handle" value="#{user.handle}"]
-            input[type="hidden" name="email" value="#{user.email}"]
-        - else 
-          ul#login: li
-            a[role="user-login" href="#"] Sign-in with Persona
+          ul#user-info.nav.pull-right
+            - if !user.nil?
+              li: a[role="user-account-info" href="#"] #{user.handle || user.email}
+              li: a[role="user-logout" href="#"] logout
+              form#user-data
+                input[type="hidden" name="id" value="#{user.id}"]
+                input[type="hidden" name="handle" value="#{user.handle}"]
+                input[type="hidden" name="email" value="#{user.email}"]
+            - else 
+              li: a[role="user-login" href="#"] Sign-in with Persona
 
-    div#main-content
+    div#main-content.container
       == yield
 
     div#footer
@@ -39,19 +40,3 @@ html
     javascript:
       require(["pages/#{@js_page}"]);      
     script[src='/jst.js']
-/!
-    script[src='/js/vendor/jquery-1.8.0.min.js']
-    script[src='/js/vendor/jquery-ui-1.8.23.custom.min.js']
-    script[src='/js/vendor/underscore-1.3.3.js']
-    script[src='/js/vendor/backbone-0.9.2.js']
-    script[src='/js/vendor/fullcalendar-1.5.4.js']
-
-/!    script[src='/js/main.js']
-/!
-    script[src='/js/models/user.js']
-    script[src='/js/models/lift.js']
-    script[src='/js/models/user_lift.js']
-/!
-    script[src='/js/views/user.js']
-    script[src='/js/views/lift.js']
-    script[src='/js/views/user_lift.js']
