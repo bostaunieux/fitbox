@@ -6,7 +6,7 @@ define([
     return Backbone.View.extend({
 
         initialize: function() {
-            _.bindAll(this, 'onAddEntry', 'onRepClick', 'onRepOtherClick');
+            _.bindAll(this, 'onAddEntry', 'onRepClick', 'onCalendarIconClick');
 
             this.$lift        = this.$('[name="lift_id"]');
             this.$date        = this.$('[name="date"]');
@@ -15,40 +15,41 @@ define([
             this.$repsOther   = this.$('[name="reps-other"]');
 
             this.$date.datepicker();
+            // set datepicker to the current date
+            this.$date.datepicker('setDate', new Date());
+
+            this.$repetitions.filter('[value=' + 1 + ']').prop('checked', true);
 
             this.resetFields();
         },
 
         resetFields: function() {
-             // set datepicker to the current date
-             this.$date.datepicker('setDate', new Date());
 
-             this.$repetitions.val('1');
              this.$weight.val('');
         },
 
         events: {
             'click button[role="addEntry"]' : 'onAddEntry',
             'change [name="repetitions"]' : 'onRepClick',
-            'change [name="reps-other"]' : 'onRepOtherClick'
+            'click i.icon-calendar': 'onCalendarIconClick'
         },
 
         onRepClick: function(event) {
-            var $selected = this.$repsOther.filter('[value=' + this.$repetitions.val() + ']');
-            if ($selected.length) {
-                $selected.prop('checked', true);
+
+            if ($(event.target).val() === "Other") {
+                this.$repsOther.show();
             } else {
-                this.$repsOther.prop('checked', false); 
+                this.$repsOther.hide();
             }
-
-        },
-
-        onRepOtherClick: function(event) {
-            this.$repetitions.val($(event.target).val());
         },
 
         onAddEntry: function(event) {
             event.preventDefault();
+
+            var reps = this.$repetitions.val();
+            if (reps == "Other") {
+                reps = this.$repsOther.val();    
+            }
 
             this.collection.create({
                 'lift_id':     this.$lift.val(),
@@ -58,6 +59,10 @@ define([
             }, {wait: true});
 
             this.resetFields();
+        },
+
+        onCalendarIconClick: function(event) {
+            this.$date.datepicker('show');
         }
 	});
 });

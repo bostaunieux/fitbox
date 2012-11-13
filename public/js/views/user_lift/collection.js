@@ -24,9 +24,11 @@ define([
 
         addAll: function() {
             this.$table.html(
-				'<thead><th>Date</th><th>Reps</th><th>Weight</th></thead>'
-				);
+				'<thead><tr><th>Date</th><th>Reps</th><th>Weight</th></tr></thead><tbody></tbody>'
+			);
+
             this.collection.each(this.addOne);
+
 			this.$table.tablesorter({
 				// TODO: create own parser for storing in data attribute
 				textExtraction: { 

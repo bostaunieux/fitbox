@@ -39,3 +39,7 @@ body {
 	font-size: 0.8em;
 }
 */
+
+[class*="span"], .uneditable-input[class*="span"], .row-fluid [class*="span"] {
+	margin-bottom: 10px;
+}

@@ -1,6 +1,6 @@
 <div class="thumbnail">
 <div class="caption">
-<a href="#"><h4 class="name"><%= name %></h4></a>
+<a href="/lift/<%= name.replace(' ', '-').toLowerCase() %>/<%= id %>"><h4 class="name"><%= name %></h4></a>
   <%
     if (user_lifts.length > 0) {
 

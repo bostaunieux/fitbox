@@ -12,11 +12,11 @@ define([
 		tpl: JST['templates/lift_summary'],
 
 		initialize: function() {
-			_.bindAll(this, 'render', 'onEntryClick');
+			_.bindAll(this, 'render'/*, 'onEntryClick'*/);
 		},
 
 		events: {
-			'click': 'onEntryClick'
+//			'click': 'onEntryClick'
 		},
 
 		render: function() {
@@ -25,10 +25,12 @@ define([
 			return this;
 		},
 
+/*
 		onEntryClick: function(event) {
 			event.preventDefault();
-			window.location = '/member/lift/' + this.model.get('name').replace(' ', '-').toLowerCase() + '/' + this.model.get('id'); 
+			window.location = '/lift/' + this.model.get('name').replace(' ', '-').toLowerCase() + '/' + this.model.get('id'); 
 		}
+*/
 	});
 });
 

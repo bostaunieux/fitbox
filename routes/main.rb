@@ -18,8 +18,8 @@ class Fenrir < Sinatra::Base
         }
     end
 
-	get '/member/lift/:lift_name/:lift_id' do
-		halt 403 if @user.nil?
+	get '/lift/:lift_name/:lift_id' do
+		redirect to('/') if @user.nil?
 
         begin
             lift = Lift.get(params['lift_id'])
@@ -29,10 +29,10 @@ class Fenrir < Sinatra::Base
 
 		halt 404 if lift.nil?
 
-		@js_page = 'member_lift'
+		@js_page = 'lift'
 		@page_data['liftId'] = params[:lift_id]
 
-        slim :member_lift, :locals => {
+        slim :lift, :locals => {
             :user => @user,
 			:lift => lift,
             :title => "FitBox.io - #{lift.name} Records for #{@user.handle || @user.email }"

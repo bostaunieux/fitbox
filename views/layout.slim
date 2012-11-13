@@ -33,10 +33,6 @@ html
     div#main-content.container
       == yield
 
-    div#footer
-      ul.links
-        li: a[href="/about"] About
-
     javascript:
       require(["pages/#{@js_page}"]);      
     script[src='/jst.js']

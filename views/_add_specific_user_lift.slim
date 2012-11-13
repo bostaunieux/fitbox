@@ -6,28 +6,33 @@ form.content.form-horizontal
     div.control-label.date
       label[for="date"] Date
     div.controls
-      input.input-small[type="text" name="date"]
+      div.input-append
+        input.input-small[type="text" name="date"]
+        span.add-on: i.icon-calendar
 
   div.control-group
     div.control-label.repetitions
       label[for="repetitions"] Reps
     div.controls
-      select.input-mini[name="repetitions"]
-        - 1.upto(10) do |i|
-          option #{i}
-    div.controls
       label.radio.inline
-        input[type="radio" name="reps-other" value="1"]
+        input[type="radio" name="repetitions" value="1"]
           ' 1
       label.radio.inline
-        input[type="radio" name="reps-other" value="2"]
+        input[type="radio" name="repetitions" value="2"]
           ' 2
       label.radio.inline
-        input[type="radio" name="reps-other" value="3"]
+        input[type="radio" name="repetitions" value="3"]
           ' 3
       label.radio.inline
-        input[type="radio" name="reps-other" value="5"]
+        input[type="radio" name="repetitions" value="5"]
           ' 5
+      label.radio.inline
+        input[type="radio" name="repetitions" value="Other"]
+          ' Other
+    div.controls
+      select.input-mini.hide[name="reps-other"]
+        - 1.upto(10) do |i|
+          option #{i}
       
   div.control-group
     div.control-label.weight
