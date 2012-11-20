@@ -8,6 +8,7 @@ require.config({
         'backbone':    'vendor/backbone/backbone-0.9.2',
         'bootstrap':   'vendor/bootstrap/bootstrap',
         'tablesorter': 'vendor/jquery/jquery.tablesorter',
+        'tablesorter-widgets': 'vendor/jquery/jquery.tablesorter.widgets',
         'domReady':    'vendor/require/domReady-2.0.1'
     },
 
@@ -23,7 +24,10 @@ require.config({
             // Once loaded, use the global 'Backbone' as the
             // module value.
             exports: 'Backbone'
-        }
+        },
+		'tablesorter-widgets': {
+			deps: ['jquery', 'tablesorter']
+		}
     }
 });
 

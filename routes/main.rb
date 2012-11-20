@@ -39,5 +39,16 @@ class Fenrir < Sinatra::Base
         }
 	end
 
+	get '/user/prefs' do
+		redirect to('/') if @user.nil?
+
+		@js_page = 'prefs'
+
+        slim :prefs, :locals => {
+            :user => @user,
+            :title => "FitBox.io - Preferences for #{@user.handle || @user.email }"
+        }
+	end
+
 end
 

@@ -3,7 +3,8 @@ define([
     'underscore',
     'backbone',
 	'views/user_lift/entry',
-	'tablesorter'
+
+	'tablesorter', 'tablesorter-widgets'
 ], function($, _, Backbone, UserLiftEntry) {
 
     return Backbone.View.extend({
@@ -16,27 +17,39 @@ define([
             this.collection.fetch();
             this.collection.on('reset', this.addAll);
             this.collection.on('add', this.addAll);
+
         },
 
         addOne: function(entry) {
-            this.$table.prepend(new UserLiftEntry({ model: entry }).render().el);
+            this.$table.find('tbody').append(new UserLiftEntry({ model: entry }).render().el);
+			this.$table.trigger('update');
         },
 
         addAll: function() {
-            this.$table.html(
-				'<thead><tr><th>Date</th><th>Reps</th><th>Weight</th></tr></thead><tbody></tbody>'
-			);
 
             this.collection.each(this.addOne);
 
+			// call the tablesorter plugin and apply the uitheme widget
 			this.$table.tablesorter({
-				// TODO: create own parser for storing in data attribute
-				textExtraction: { 
-					// for the date, ensure we're sorting on the timestamp
-					0: function(node, table, cellIndex) { return $(node).find('span').text(); } 
-			    } 
+
+				sortList: [[0, 1]],
+				// widget code contained in the jquery.tablesorter.widgets.js file
+				// use the zebra stripe widget if you plan on hiding any rows (filter widget)
+				widgets : [ "uitheme", "zebra" ],
+
+				widgetOptions : {
+					// using the default zebra striping class name, so it actually isn't included in the theme variable above
+					// this is ONLY needed for bootstrap theming if you are using the filter widget, because rows are hidden
+					zebra : ["even", "odd"],
+
+					// set the uitheme widget to use the bootstrap theme class names
+					uitheme : "bootstrap"
+
+				}
 			});
+
+			this.$table.trigger('update');
         }
-    });
+	});
 });
 

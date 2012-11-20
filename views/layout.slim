@@ -5,6 +5,7 @@ html
     /!  TODO: include stylesheets
     link[rel="stylesheet" type="text/css" href="/css/smoothness/jquery-ui-1.8.23.custom.css"]
     link[rel="stylesheet" type="text/css" href="/css/normalize.css"]
+    link[rel="stylesheet" type="text/css" href="/css/theme.bootstrap.css"]
     /! link[rel="stylesheet" type="text/css" href="/css/fullcalendar.css"]
     link[rel="stylesheet" type="text/css" href="/css/main.css"]
     link[rel="stylesheet" type="text/css" href="/css/bootstrap.css"]
@@ -21,7 +22,7 @@ html
 
           ul#user-info.nav.pull-right
             - if !user.nil?
-              li: a[role="user-account-info" href="#"] #{user.handle || user.email}
+              li: a[role="user-account-info" href="/user/prefs"] #{user.handle || user.email}
               li: a[role="user-logout" href="#"] logout
               form#user-data
                 input[type="hidden" name="id" value="#{user.id}"]

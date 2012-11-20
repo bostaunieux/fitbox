@@ -37,6 +37,25 @@ class Fenrir < Sinatra::Base
 		session['user_id'] = nil
 	end
 
+    put '/api/user' do
+
+        data = JSON.parse(request.body.string)
+        halt 400 if data.nil?
+
+		halt 403 if @user.nil? || @user.id.to_s != data['id']
+
+		if data['handle'] && data['handle'] != @user.handle
+			begin
+				@user.handle = data['handle']	
+				@user.save
+			rescue Exception => e
+				logger.error "[User] Problem updating user - #{e.message}"
+			end
+		end
+
+        return @user.to_json
+    end
+
     ##############
     # START: LIFT
     ##############

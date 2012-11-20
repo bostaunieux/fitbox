@@ -46,7 +46,7 @@ define([
         onAddEntry: function(event) {
             event.preventDefault();
 
-            var reps = this.$repetitions.val();
+            var reps = this.$repetitions.filter(':checked').val();
             if (reps == "Other") {
                 reps = this.$repsOther.val();    
             }
@@ -55,7 +55,7 @@ define([
                 'lift_id':     this.$lift.val(),
                 'date':        this.$date.datepicker('getDate').getTime() / 1000,
                 'weight':      this.$weight.val(),
-                'repetitions': this.$repetitions.val()
+                'repetitions': reps
             }, {wait: true});
 
             this.resetFields();
