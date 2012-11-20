@@ -1,0 +1,25 @@
+h3.title Update your preferences
+form.content.form-horizontal
+
+  div.control-group
+    div.control-label.date
+      label[for="handle"] Username
+    div.controls
+      div.input-prepend
+        span.add-on: i.icon-user
+        input.input-small[type="text" name="handle" value="#{user.handle}"]
+
+  div.control-group
+    div.control-label.repetitions
+      label[for="weight-format"] Weight Format
+    div.controls
+      label.radio.inline
+        input[type="radio" name="weight-format" value="Pounds"]
+          ' Pounds
+      label.radio.inline
+        input[type="radio" name="weight-format" value="Kilograms"]
+          ' Kilograms
+
+  div.control-group
+    div.controls
+      button.btn[type="submit" role="update"] Update
