@@ -14,9 +14,13 @@ define([
             this.$repetitions = this.$('[name="repetitions"]');
             this.$repsOther   = this.$('[name="reps-other"]');
 
-            this.$date.datepicker();
-            // set datepicker to the current date
-            this.$date.datepicker('setDate', new Date());
+			this.datepickerEnabled = this.$date.prop('type') === 'text';
+
+			if (this.datepickerEnabled) {
+				this.$date.datepicker();
+				// set datepicker to the current date
+				this.$date.datepicker('setDate', new Date());
+			}
 
             this.$repetitions.filter('[value=' + 1 + ']').prop('checked', true);
 
@@ -45,24 +49,40 @@ define([
 
         onAddEntry: function(event) {
             event.preventDefault();
+			var error = false;
 
             var reps = this.$repetitions.filter(':checked').val();
             if (reps == "Other") {
                 reps = this.$repsOther.val();    
             }
 
-            this.collection.create({
-                'lift_id':     this.$lift.val(),
-                'date':        this.$date.datepicker('getDate').getTime() / 1000,
-                'weight':      this.$weight.val(),
-                'repetitions': reps
-            }, {wait: true});
+			var date = null;
+			if (this.datepickerEnabled) {
+				date = this.$date.datepicker('getDate');
+			} else {
+				date = $.datepicker.parseDate('yy-mm-dd', this.$date.val());
+			}
+
+			if (!date) {
+				error = true;	
+			}
+
+			if (!error) {
+				this.collection.create({
+					'lift_id':     this.$lift.val(),
+					'date':        date.getTime() / 1000,
+					'weight':      this.$weight.val(),
+					'repetitions': reps
+				}, {wait: true});
+			}
 
             this.resetFields();
         },
 
         onCalendarIconClick: function(event) {
-            this.$date.datepicker('show');
+			if (this.datepickerEnabled) {
+				this.$date.datepicker('show');
+			}
         }
 	});
 });

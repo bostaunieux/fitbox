@@ -14,9 +14,8 @@ define([
 
 			this.$table = this.$('table');
 
-            this.collection.fetch();
             this.collection.on('reset', this.addAll);
-            this.collection.on('add', this.addAll);
+            this.collection.on('add', this.addOne);
 
         },
 

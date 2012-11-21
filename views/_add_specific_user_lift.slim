@@ -7,8 +7,11 @@ form.content.form-horizontal
       label[for="date"] Date
     div.controls
       div.input-append
-        input.input-small[type="text" name="date"]
-        span.add-on: i.icon-calendar
+        - if @page_data && @page_data[:isMobile]
+          input[type="date" name="date" value="#{Time.now.strftime('%Y-%m-%d')}"]
+        - else
+          input.input-small[type="text" name="date"]
+          span.add-on: i.icon-calendar
 
   div.control-group
     div.control-label.repetitions
@@ -17,9 +20,6 @@ form.content.form-horizontal
       label.radio.inline
         input[type="radio" name="repetitions" value="1"]
           ' 1
-      label.radio.inline
-        input[type="radio" name="repetitions" value="2"]
-          ' 2
       label.radio.inline
         input[type="radio" name="repetitions" value="3"]
           ' 3
@@ -39,9 +39,9 @@ form.content.form-horizontal
       label[for="weight"] Weight
     div.controls
       div.input-append
-        input.input-small[type="text" name="weight"]
+        input.input-mini[type="text" name="weight" pattern="[0-9]*"]
         span.add-on lbs
 
   div.control-group
     div.controls
-      button.btn[type="submit" role="addEntry"] Add
+      button.btn.btn-primary[type="submit" role="addEntry"] Add

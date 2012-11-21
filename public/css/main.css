@@ -1,5 +1,4 @@
 body {
-	min-width: 320px;
 }
 
 #main-content {
@@ -7,7 +6,6 @@ body {
 }
 
 .user-lift-list {
-	max-width: 400px;
 }
 
 /*
@@ -40,6 +38,82 @@ body {
 }
 */
 
-[class*="span"], .uneditable-input[class*="span"], .row-fluid [class*="span"] {
+#main-content [class*="span"],
+#main-content .uneditable-input[class*="span"],
+#main-content .row-fluid [class*="span"] {
 	margin-bottom: 10px;
+}
+
+#main-content .thumbnail {
+}
+
+input[name="date"] {
+	font-size: 18px;
+}
+
+#header .navbar-inner {
+	padding-right: 10px;
+	padding-left: 10px;
+
+	background-image: -webkit-linear-gradient(top, #666, #333);
+}
+
+#header .navbar {
+	margin-bottom: 0px;
+}
+
+#header .navbar .brand {
+	text-shadow: 0 1px 0 #222;
+	color: #eee;
+}
+
+#header .navbar .nav > li > a {
+	padding: 10px 8px;
+	text-shadow: 0 1px 0 #222;
+	color: #eee;
+}
+
+#main-content h2 {
+	font-size: 20px;
+	line-height: 24px;
+}
+
+#main-content h3 {
+	font-size: 16px;
+	line-height: 20px;
+}
+
+#main-content h4 {
+	margin: 0;
+}
+
+#main-content .form-horizontal .control-label {
+	float: left;
+	text-align: right;
+	width: 50px;
+	margin-right: 15px;
+}
+
+#main-content [name="reps-other"] {
+	margin-top: 10px;
+	margin-left: 65px;
+}
+
+#main-content [type="text"] {
+	width: 100px;
+}
+
+#main-content button{
+	margin-left: 65px;
+}
+
+body .btn-primary {
+	background-color: #0572BD;
+	background-image: -webkit-linear-gradient(top, #067CCD, #045E9C);
+
+}
+
+body .btn-primary:active,
+body .btn-primary:hover {
+	background-color: #045E9C;
 }

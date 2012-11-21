@@ -5,7 +5,13 @@ class Fenrir < Sinatra::Base
         session['user_id'] ||= nil
 
 		@user = User.get(session['user_id']) unless session['user_id'].nil?
-		@page_data = {}
+		@page_data = {
+            :isMobile => false
+        }
+    end
+
+    before :agent => /iPhone/ do
+        @page_data[:isMobile] = true
     end
 
     get '/' do
@@ -31,11 +37,12 @@ class Fenrir < Sinatra::Base
 
 		@js_page = 'lift'
 		@page_data['liftId'] = params[:lift_id]
+        @page_data['userLifts'] = @user.user_lifts.all(:lift_id => lift.id)
 
         slim :lift, :locals => {
             :user => @user,
 			:lift => lift,
-            :title => "FitBox.io - #{lift.name} Records for #{@user.handle || @user.email }"
+            :title => "FitBox.io - #{lift.name} Log - #{@user.handle || @user.email }"
         }
 	end
 

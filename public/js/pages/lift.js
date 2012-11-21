@@ -7,12 +7,6 @@ define([
 	'domReady!'
 ], function($, _, Backbone, Config, UserLiftCollection, UserLiftCollectionView, AddUserLiftView) {
 	var userLiftCollection = new UserLiftCollection();
-	if (Config.pageData.liftId) {
-		userLiftCollection.setFilterByLift(Config.pageData.liftId);
-		userLiftCollection.fetch();
-	} else {
-		console.log('liftId not defined');
-	}
 
 	$('.add-user-lift').each(function(index, element) {
 		new AddUserLiftView({
@@ -27,5 +21,10 @@ define([
 			collection: userLiftCollection
 		});
 	});
+
+	if (Config.pageData.userLifts) {
+		userLiftCollection.setFilterByLift(Config.pageData.liftId);
+		userLiftCollection.reset(Config.pageData.userLifts);
+	}
 });
 
