@@ -15,7 +15,8 @@ html
     /!meta[name="viewport" content="width=device-width"]
     meta[name="viewport" content="initial-scale=1.0, user-scalable=no"]
     script[src="https://login.persona.org/include.js"]
-    script[src="/js/vendor/require/require-2.1.1.js" data-main="/js/main"]
+    script[src="/js/vendor/require/require-2.1.1.js"]
+
 
   body[data-page-data="#{@page_data ? @page_data.to_json : {}}"]
     div#header
@@ -38,5 +39,7 @@ html
       == yield
 
     javascript:
-      require(["pages/#{@js_page}"]);      
+      require(['/js/main.js'], function (common) {
+        require(["pages/#{@js_page}"]);
+      });
     script[src='/jst.js']
