@@ -1,8 +1,10 @@
 body {
 }
 
-#main-content {
-	margin: 0 10px;
+@media (max-width: 480px) {
+    #main-content {
+        margin: 0 10px;
+    }
 }
 
 .user-lift-list {
