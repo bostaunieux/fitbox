@@ -2,13 +2,9 @@
 require 'sinatra/base'
 require 'sinatra/partial'
 require 'sinatra/jstpages'
-require 'sinatra/config_file'
 require 'slim'
 
 class Fenrir < Sinatra::Base
-	register Sinatra::ConfigFile
-
-	config_file '/etc/fitbox/config.yml'
 
 =begin
     use Rack::Session::Cookie,
