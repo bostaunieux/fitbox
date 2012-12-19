@@ -7,7 +7,17 @@ require 'do_postgres'
 # set up logging
 DataMapper::Logger.new($stdout, :debug)
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/fenrir2")
+settings ||= nil
+if settings.nil?
+    require 'yaml'
+    settings = YAML.load_file('/etc/fitbox/config.yml') 
+    settings = settings['development']
+end
+
+db = settings['database']
+db_url = "#{db['protocol']}://#{db['username']}:#{db['password']}@#{db['host']}:#{db['port']}/#{db['database']}"
+
+DataMapper.setup(:default, db_url)
 # throw an exception on any DM save failures
 DataMapper::Model.raise_on_save_failure = true
 
