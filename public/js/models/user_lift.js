@@ -11,7 +11,8 @@ define([
 			'user_id': 0,
 			'weight': 0,
 			'repetitions': 1,
-			'date': Date.now()
+			'date': Date.now(),
+			'notes': ''
 		},
 
 		urlRoot: '/api/user/lift',

@@ -145,7 +145,8 @@ class Fenrir < Sinatra::Base
                 :lift        => lift,
                 :date        => Time.at(data["date"]),
                 :weight      => data["weight"],
-                :repetitions => data["repetitions"]
+                :repetitions => data["repetitions"],
+				:notes       => data["notes"]
             )
             @user.save
         rescue Exception => e

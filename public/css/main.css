@@ -13,6 +13,18 @@ body {
     #main-content {
         margin: 0 10px;
     }
+
+	table.tablesorter th[data-column="3"] {
+		display: none;
+	}
+
+	table.tablesorter th[data-column="3"] {
+		display: none;
+	}
+
+	table.tablesorter td.notes {
+		display: none;
+	}
 }
 
 .user-lift-list {
@@ -57,6 +69,7 @@ body {
 #main-content .thumbnail {
 	border-radius: 1px;
 	box-shadow: 1px 1px 6px #ccc;
+	background-color: #fefefe;
 }
 
 input[name="date"] {

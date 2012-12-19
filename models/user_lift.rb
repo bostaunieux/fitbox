@@ -5,6 +5,7 @@ class UserLift
     property :repetitions, Integer
     property :weight,      Float
 	property :date,        DateTime
+	property :notes,       Text
 
     belongs_to :lift
 	belongs_to :user

@@ -6,13 +6,14 @@ define([
     return Backbone.View.extend({
 
         initialize: function() {
-            _.bindAll(this, 'onAddEntry', 'onRepClick', 'onCalendarIconClick');
+            _.bindAll(this, 'addEntry', 'onRepClick', 'onCalendarIconClick');
 
             this.$lift        = this.$('[name="lift_id"]');
             this.$date        = this.$('[name="date"]');
             this.$weight      = this.$('[name="weight"]');
             this.$repetitions = this.$('[name="repetitions"]');
             this.$repsOther   = this.$('[name="reps-other"]');
+            this.$notes       = this.$('[name="notes"]');
 
 			this.datepickerEnabled = this.$date.prop('type') === 'text';
 
@@ -33,7 +34,7 @@ define([
         },
 
         events: {
-            'click button[role="addEntry"]' : 'onAddEntry',
+            'click button[role="addEntry"]' : 'onSubmit',
             'change [name="repetitions"]' : 'onRepClick',
             'click i.icon-calendar': 'onCalendarIconClick'
         },
@@ -47,8 +48,12 @@ define([
             }
         },
 
-        onAddEntry: function(event) {
+        onSubmit: function(event) {
             event.preventDefault();
+            this.addEntry();
+        },
+
+        addEntry: function() {
 			var error = false;
 
             var reps = this.$repetitions.filter(':checked').val();
@@ -72,7 +77,8 @@ define([
 					'lift_id':     this.$lift.val(),
 					'date':        date.getTime() / 1000,
 					'weight':      this.$weight.val(),
-					'repetitions': reps
+					'repetitions': reps,
+					'notes':       this.$notes.val()
 				}, {wait: true});
 			}
 
