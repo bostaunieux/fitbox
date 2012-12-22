@@ -1,14 +1,16 @@
-h2 CrossFit Lift Tracker
 - if user
-  /!div.add-user-lift
-    /!== partial :_add_user_lift, :locals => { :lifts => lifts }
 
-  /!div.user-lift-list
-    /!h2.title All My Lifts
-    /!table.content
+  div.lift-summary-filter
+    div.content
+      div.btn-toolbar
+        div.btn-group
+          a.btn.btn-small.filter-item[href="#" data-fitbox-filter="all"] All Reps
+          a.btn.btn-small.filter-item[href="#" data-fitbox-filter="1"] 1 Rep
+        div.btn-group
+          a.btn.btn-small.sort-item[href="#" data-fitbox-sort="newest"] Newest
+          a.btn.btn-small.sort-item[href="#" data-fitbox-sort="heaviest"] Heaviest
 
   div.lift-summary-list
-    /!h3.title Lift Summary
     div.content.row-fluid
       ul.thumbnails
 

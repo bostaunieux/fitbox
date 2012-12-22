@@ -17,8 +17,27 @@ define([
 
         validate: function(attrs) {
 
-        }
+        },
 
+        getId: function() {
+            return this.get('id');
+        },
+
+        getName: function() {
+            return this.get('name');
+        },
+
+        getDescription: function() {
+            return this.get('description');
+        },
+
+        getLiftCategoryName: function() {
+            return this.get('lift_category_name');
+        },
+
+		getLiftURL: function() {
+			return '/lift/' + this.getName().replace(' ', '-').toLowerCase() + '/' + this.getId()
+		}
     });
 });
 

@@ -4,8 +4,8 @@ class Fenrir < Sinatra::Base
     before do
         session['user_id'] ||= nil
 
-		@user = User.get(session['user_id']) unless session['user_id'].nil?
-		@page_data = {
+        @user = User.get(session['user_id']) unless session['user_id'].nil?
+        @page_data = {
             :isMobile => false
         }
     end
@@ -15,11 +15,15 @@ class Fenrir < Sinatra::Base
     end
 
     get '/' do
-		@js_page = 'index'
+        all_lifts = Lift.all
+
+        @js_page = 'index'
+        @page_data[:lifts] = all_lifts
+        @page_data[:userLifts] = @user.user_lifts.all unless @user.nil?
 
         slim :index, :locals => {
             :user => @user,
-            :lifts => Lift.all,
+            :lifts => all_lifts,
             :title => "FitBox.io - CrossFit Record Logger"
         }
     end

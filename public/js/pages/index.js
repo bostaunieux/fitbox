@@ -1,13 +1,16 @@
 define([
-    'jquery',     // lib/jquery/jquery
-    'underscore', // lib/underscore/underscore
-    'backbone',    // lib/backbone/backbone
+    'jquery', 'underscore', 'backbone',
+	'config',
 	'models/user',
 	'collections/lift',
 	'collections/user_lift',
-	'views/lift/summary_collection',
+	'models/user_lift_filter',
+	'views/lift/lift_list',
+	'views/lift/lift_list_filter',
 	'domReady!'
-], function($, _, Backbone, userModel, LiftCollection, UserLiftCollection, LiftCollectionView) {
+], function($, _, Backbone, Config,
+	userModel, LiftCollection, UserLiftCollection, UserLiftFilter,
+	LiftListView, LiftListFilterView) {
 
     if (!userModel.exists()) {
         return; 
@@ -15,14 +18,27 @@ define([
 
 	var liftCollection = new LiftCollection();
 	var userLiftCollection = new UserLiftCollection();
-	userLiftCollection.setSummaryOnly(true);
-	userLiftCollection.fetch();
+	var userLiftFilter = new UserLiftFilter();
+    if (Config.pageData['userLifts']) {
+        userLiftCollection.reset(Config.pageData['userLifts']);
+    } else {
+        userLiftCollection.fetch();
+    }
 
 	$('.lift-summary-list').each(function(index, element) {
-		new LiftCollectionView({
+		new LiftListView({
 			el: $(element),
+			userLiftFilter: userLiftFilter,
 			collection: liftCollection,
 			userLiftCollection: userLiftCollection
+		});
+	});
+
+	$('.lift-summary-filter').each(function(index, element) {
+		new LiftListFilterView({
+			el: $(element),
+			model: userLiftFilter,
+			collection: userLiftCollection
 		});
 	});
 });

@@ -19,7 +19,31 @@ define([
 
 		validate: function(attrs) {
 
-		}
+		},
+
+        getLiftId: function() {
+            return this.get('lift_id');
+        },
+
+        getUserId: function() {
+            return this.get('user_id');
+        },
+
+        getWeight: function() {
+            return this.get('weight');
+        },
+
+        getRepetitions: function() {
+            return this.get('repetitions');
+        },
+
+        getDate: function() {
+            return this.get('date');
+        },
+
+        getNotes: function() {
+            return this.get('notes');
+        }
 
 	});
 });

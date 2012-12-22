@@ -12,10 +12,6 @@ define([
             var apiUrl = '/api/user/lift',
 				params = {};
 
-            if (this.isSummaryOnly) {
-                params['summary'] = 1;
-            }
-
             if (this.filterByLift) {
                 params['lift_id'] = this.filterByLift;
             }
@@ -41,3 +37,4 @@ define([
 
     });
 });
+
