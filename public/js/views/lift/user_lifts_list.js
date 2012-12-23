@@ -47,11 +47,13 @@ define([
 			if (filterBy > 0) {
 			   models = _.filter(models, function(model) { return model.getRepetitions() == filterBy });
 			}
-			
-			if (sortBy === 'newest') {
-				selected = _.max(models, function(model) { return model.getDate(); });
-			} else if (sortBy === 'heaviest') {
-				selected = _.max(models, function(model) { return model.getWeight(); });
+
+			if (models.length > 0) {
+				if (sortBy === 'newest') {
+					selected = _.max(models, function(model) { return model.getDate(); });
+				} else if (sortBy === 'heaviest') {
+					selected = _.max(models, function(model) { return model.getWeight(); });
+				}
 			}
 
 			if (selected) {
@@ -59,6 +61,7 @@ define([
 			} else {
 				this.$el.html('');
 			}
+			
 			return this;
 		}
 	});
