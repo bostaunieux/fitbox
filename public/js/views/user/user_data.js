@@ -51,7 +51,9 @@ define([
          */
         onLogIn: function(event) {
             event.preventDefault();
-            navigator.id.request();
+            navigator.id.request({
+				siteName: 'Fitbox.io'
+			});
         },
 
         onLogOut: function(event) {

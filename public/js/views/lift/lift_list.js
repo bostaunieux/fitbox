@@ -47,11 +47,11 @@ define([
                 $liftGroup = this.$mainContent.find('[data-lift-name="' + liftName + '"]');
 
             if ($liftGroup.length === 0) {
-                $liftGroup = $('<div />').attr({
+                $liftGroup = $('<details open="open" />').attr({
                     'data-lift-name': liftName,
                     'class': 'lift-group row'
                 });
-                $liftGroup.append($('<h3 />').text(liftName + 's'));
+                $liftGroup.append($('<summary />').text(liftName + 's'));
                 $liftGroup.append($('<div />', { 'class': 'lifts' }));
 
                 $liftGroup.appendTo(this.$mainContent);
