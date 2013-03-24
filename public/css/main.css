@@ -1,3 +1,5 @@
+ /* add diagonal stripes to background */
+/*
 body {
 	background-color: #efefef;
 	background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
@@ -7,6 +9,10 @@ body {
 	background-image: linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
 
 	background-size: 8px 8px;	
+}
+*/
+body {
+	background-color: #fafafa;
 }
 
 @media (max-width: 480px) {
@@ -27,38 +33,6 @@ body {
 	}
 }
 
-.user-lift-list {
-}
-
-/*
-.lift-group {
-	clear: both;
-}
-
-.lift-group .lifts {
-}
-
-.lift-group .lifts .lift {
-	border: 1px solid #555;
-	border-radius: 5px;
-	margin: 5px;
-	padding: 5px;
-	display: inline-block;
-
-	width: 140px;
-	min-height: 70px;
-	vertical-align: top;
-}
-
-.lift-group .lifts .lift .name {
-	margin-bottom: 10px;
-	text-align: center;
-}
-
-.lift-group .lifts .lift .user-lift {
-	font-size: 0.8em;
-}
-*/
 
 #main-content [class*="span"],
 #main-content .uneditable-input[class*="span"],
@@ -69,7 +43,7 @@ body {
 #main-content .thumbnail {
 	border-radius: 1px;
 	box-shadow: 1px 1px 6px #ccc;
-	background-color: #fefefe;
+	background-color: #fff;
 }
 
 input[name="date"] {
@@ -103,7 +77,11 @@ input[name="date"] {
 	line-height: 24px;
 }
 
-#main-content summary {
+#main-content details {
+	clear: both;
+}
+
+#main-content details summary {
 	font-size: 1.3em;
 	font-weight: bold;
 	margin: 10px 0;
